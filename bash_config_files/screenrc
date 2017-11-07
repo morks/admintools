@@ -1,0 +1,69 @@
+########################################################################
+#
+# configuration of screen ~/.screenrc
+
+
+########################################################################
+# global settings
+
+startup_message  off   # disable startup message
+vbell            off   # disable virtual bell
+msgwait 1              # show messages for 1 sec. 
+defutf8          on    # utf8 
+shelltitle   'bash'    # shell title
+defscrollback 10000    # buffer
+defmonitor off     
+
+
+########################################################################
+# default windows
+screen -t bash
+screen -t bash
+select 0
+
+########################################################################
+# Keys
+
+# control + left; previous screen window
+bindkey ^[[1;5D prev
+# control + right; next screen window
+bindkey ^[[1;5C next
+
+## ALT + arrow to change window
+bindkey ^[[1;3B focus down
+bindkey ^[[1;3A focus up
+bindkey ^[[1;3C focus right
+bindkey ^[[1;3D focus left
+
+# F5 remove all splits
+bindkey -k k5 only
+bindkey -k k6 remove
+# F7 split
+bindkey -k k7 split
+# F8 Split vertical
+bindkey -k k8 split -v
+# F9 kill tab
+bindkey -k k9 kill
+
+#####
+# tell screen that you term can scroll
+termcapinfo xterm ti@:te@
+
+# bind Shift+PgUp/PgDn
+bindkey -m "^[[5;2~" stuff ^b
+bindkey -m "^[[6;2~" stuff ^f
+
+
+########################################################################
+# footer
+
+shelltitle "$ |bash"
+
+highlighted                                                                            
+hardstatus             alwayslastline                                                                                                                          
+
+# gray 
+hardstatus string "%{= wk} %-w%{= KW} [%n %t] %{-}%+w %= | %H %` "
+
+# blue/red
+##hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
